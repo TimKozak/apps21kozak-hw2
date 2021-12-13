@@ -10,7 +10,7 @@ public class Queue {
 
     public Object dequeue() {
         Object deleted = this.linkedList.getFirst();
-        this.linkedList.removeFirst();
+        this.linkedList = this.linkedList.removeFirst();
         return deleted;
     }
 

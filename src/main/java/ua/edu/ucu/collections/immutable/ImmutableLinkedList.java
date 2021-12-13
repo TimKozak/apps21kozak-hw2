@@ -55,13 +55,17 @@ public final class ImmutableLinkedList implements ImmutableList {
         }
 
         Object[] output = new Object[size() + c.length];
-        Object[] array = toArray();
-        Object[] left = Arrays.copyOf(array, index);
-        Object[] right = Arrays.copyOfRange(array, index, size());
+        Object[] elements = toArray();
 
-        System.arraycopy(left, 0, output, 0, index);
-        System.arraycopy(c, 0, output, index, c.length );
-        System.arraycopy(right, 0, output, c.length, output.length);
+        for (int i = 0; i < index; i++) {
+            output[i] = elements[i];
+        }
+        for (int i = index; i < index + c.length; i++) {
+            output[i] = c[i - index];
+        }
+        for (int i = index + c.length; i < size() + c.length; i++) {
+            output[i] = elements[i - c.length];
+        }
 
         return new ImmutableLinkedList(output);
     }
@@ -180,7 +184,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
 //    Done
     public ImmutableLinkedList addLast(Object e) {
-        return (ImmutableLinkedList) addAll(size(), new Object[]{e});
+        return (ImmutableLinkedList) add(e);
     }
 
 //    Done
