@@ -1,72 +1,133 @@
 package ua.edu.ucu.collections.immutable;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public final class ImmutableArrayList implements ImmutableList {
+    private int size;
+    private Object[] elements;
+
+//    Done
     public ImmutableArrayList(Object[] elements) {
+        this.size = elements.length;
+        this.elements = Arrays.copyOf(elements,
+                elements.length);
     }
 
+//    Done
     public ImmutableArrayList() {
+        this.size = 0;
+        this.elements = new Object[]{};
     }
 
+//    Done
     @Override
     public ImmutableList add(Object e) {
-        return null;
+        return add(this.size, e);
     }
 
+//    Done
     @Override
     public ImmutableList add(int index, Object e) {
-        return null;
+        return addAll(index, new Object[] {e});
     }
 
+//    Done
     @Override
     public ImmutableList addAll(Object[] c) {
-        return null;
+        return addAll(this.size, c);
     }
 
+//    Done
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        return null;
+        if (index > this.size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Object[] output = new Object[this.size + c.length];
+        Object[] left = Arrays.copyOf(this.elements, index);
+        Object[] right = Arrays.copyOfRange(this.elements, index, this.size);
+
+        System.arraycopy(left, 0, output, 0, index);
+        System.arraycopy(c, 0, output, index, c.length );
+        System.arraycopy(right, 0, output, c.length, output.length);
+
+        return new ImmutableArrayList(output);
     }
 
+//    Done
     @Override
     public Object get(int index) {
-        return null;
+        if (index > this.size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return this.elements[index];
     }
 
+//    Done
     @Override
     public ImmutableList remove(int index) {
-        return null;
+        if (index > this.size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Object[] output = new Object[this.size];
+
+        System.arraycopy(this.elements, 0, output, 0, index);
+        System.arraycopy(this.elements, index + 1, output, index, this.size - (index + 1));
+
+        return new ImmutableArrayList(output);
     }
 
+//    Done
     @Override
     public ImmutableList set(int index, Object e) {
-        return null;
+        Object[] output = new Object[this.size];
+
+        for (int i = 0; i < output.length; i++) {
+            if (i == index) {
+                output[i] = e;
+            } else {
+                output[i] = this.elements[i];
+            }
+        }
+
+        return new ImmutableArrayList(output);
     }
 
+//    Done
     @Override
     public int indexOf(Object e) {
-        return 0;
+        for (int i = 0; i < this.size; i++) {
+            if (this.elements[i] == e) {
+                return i;
+            }
+        }
+        return -1;
     }
 
+//    Done
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
+//    Done
     @Override
     public ImmutableList clear() {
-        return null;
+        return new ImmutableArrayList();
     }
 
+//    Done
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size == 0;
     }
 
+//    Done
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(this.elements, this.size);
     }
 }
