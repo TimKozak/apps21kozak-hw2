@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.edu.ucu.collections.immutable.ImmutableArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
     ImmutableArrayList array1;
@@ -33,6 +32,7 @@ public class ImmutableArrayListTest {
         assertEquals(1, array2.indexOf(1));
         assertEquals(2, array1.size());
         assertTrue(array3.isEmpty());
+        assertFalse(array2.isEmpty());
         assertEquals(-1, array2.indexOf(25));
         assertEquals(3, array2.get(3));
         assertEquals(numbers[0], array2.toArray()[1]);

@@ -10,6 +10,7 @@ public class ImmutableLinkedListTest {
     ImmutableLinkedList list1;
     ImmutableLinkedList list2;
     ImmutableLinkedList list3;
+    ImmutableLinkedList list4;
     Object number1;
     Object number2;
     Object[] numbers = new Object[]{1};
@@ -20,6 +21,7 @@ public class ImmutableLinkedListTest {
         list2 = new ImmutableLinkedList(new Object[]{1, 2, 3});
         list3 = (ImmutableLinkedList) list2.clear();
         list3 = list2.addFirst(1);
+        list4 = new ImmutableLinkedList();
 
         list1 = (ImmutableLinkedList) list1.add(1);
         list1 = (ImmutableLinkedList) list1.add(1, 2);
@@ -38,6 +40,7 @@ public class ImmutableLinkedListTest {
         assertEquals(2, list2.indexOf(1));
         assertEquals(1, list1.size());
         assertFalse(list3.isEmpty());
+        assertTrue(list4.isEmpty());
         assertEquals(-1, list2.indexOf(25));
         assertEquals(3, list2.get(3));
         assertNotSame(number1, number2);
