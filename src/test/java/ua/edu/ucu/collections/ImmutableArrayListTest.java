@@ -11,6 +11,7 @@ public class ImmutableArrayListTest {
     ImmutableArrayList array1;
     ImmutableArrayList array2;
     ImmutableArrayList array3;
+    Object[] numbers = new Object[]{1,2,3};
 
     @Before
     public void setUp() {
@@ -34,5 +35,6 @@ public class ImmutableArrayListTest {
         assertTrue(array3.isEmpty());
         assertEquals(-1, array2.indexOf(25));
         assertEquals(3, array2.get(3));
+        assertEquals(numbers[0], array2.toArray()[1]);
     }
 }

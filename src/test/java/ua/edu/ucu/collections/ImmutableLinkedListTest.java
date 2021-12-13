@@ -12,12 +12,14 @@ public class ImmutableLinkedListTest {
     ImmutableLinkedList list3;
     Object number1;
     Object number2;
+    Object[] numbers = new Object[]{1};
 
     @Before
     public void setUp() {
         list1 = new ImmutableLinkedList();
         list2 = new ImmutableLinkedList(new Object[]{1, 2, 3});
         list3 = (ImmutableLinkedList) list2.clear();
+        list3 = list2.addFirst(1);
 
         list1 = (ImmutableLinkedList) list1.add(1);
         list1 = (ImmutableLinkedList) list1.add(1, 2);
@@ -35,9 +37,10 @@ public class ImmutableLinkedListTest {
     public void everything() {
         assertEquals(2, list2.indexOf(1));
         assertEquals(1, list1.size());
-        assertTrue(list3.isEmpty());
+        assertFalse(list3.isEmpty());
         assertEquals(-1, list2.indexOf(25));
         assertEquals(3, list2.get(3));
         assertNotSame(number1, number2);
+        assertEquals(numbers[0], list3.toArray()[0]);
     }
 }

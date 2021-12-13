@@ -55,10 +55,6 @@ public final class ImmutableArrayList implements ImmutableList {
 //    Done
     @Override
     public Object get(int index) {
-        if (index > this.size || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-
         return this.elements[index];
     }
 
@@ -71,9 +67,7 @@ public final class ImmutableArrayList implements ImmutableList {
         System.arraycopy(this.elements, index + 1, output, index,
                 this.size - (index + 1));
 
-        if (this.size > 0) {
-            this.size--;
-        }
+        this.size--;
 
         return new ImmutableArrayList(output);
     }
