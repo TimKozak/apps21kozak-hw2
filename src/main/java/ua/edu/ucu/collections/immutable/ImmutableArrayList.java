@@ -46,12 +46,9 @@ public final class ImmutableArrayList implements ImmutableList {
 
         Object[] output = new Object[this.size + c.length];
 
-        for (int i = 0; i < index; i++) {
-            output[i] = elements[i];
-        }
-        for (int i = index; i < index + c.length; i++) {
-            output[i] = c[i - index];
-        }
+        System.arraycopy(elements, 0, output, 0, index);
+        System.arraycopy(c, 0, output, index, c.length);
+
         for (int i = index + c.length; i < this.size + c.length; i++) {
             output[i] = elements[i - c.length];
         }
@@ -79,7 +76,8 @@ public final class ImmutableArrayList implements ImmutableList {
         Object[] output = new Object[this.size];
 
         System.arraycopy(this.elements, 0, output, 0, index);
-        System.arraycopy(this.elements, index + 1, output, index, this.size - (index + 1));
+        System.arraycopy(this.elements, index + 1, output, index,
+                this.size - (index + 1));
 
         return new ImmutableArrayList(output);
     }

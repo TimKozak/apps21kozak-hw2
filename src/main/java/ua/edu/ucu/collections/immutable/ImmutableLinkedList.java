@@ -1,7 +1,5 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.util.Arrays;
-
 public final class ImmutableLinkedList implements ImmutableList {
     private Node head;
     private final Node tail;
@@ -57,12 +55,9 @@ public final class ImmutableLinkedList implements ImmutableList {
         Object[] output = new Object[size() + c.length];
         Object[] elements = toArray();
 
-        for (int i = 0; i < index; i++) {
-            output[i] = elements[i];
-        }
-        for (int i = index; i < index + c.length; i++) {
-            output[i] = c[i - index];
-        }
+        System.arraycopy(elements, 0, output, 0, index);
+        System.arraycopy(c, 0, output, index,  c.length);
+
         for (int i = index + c.length; i < size() + c.length; i++) {
             output[i] = elements[i - c.length];
         }
