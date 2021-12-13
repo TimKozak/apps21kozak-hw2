@@ -32,5 +32,7 @@ public class ImmutableArrayListTest {
         assertEquals(1, array2.indexOf(1));
         assertEquals(2, array1.size());
         assertTrue(array3.isEmpty());
+        assertEquals(-1, array2.indexOf(25));
+        assertEquals(3, array2.get(3));
     }
 }

@@ -40,10 +40,6 @@ public final class ImmutableArrayList implements ImmutableList {
 //    Done
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if (index > this.size || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-
         Object[] output = new Object[this.size + c.length];
 
         System.arraycopy(elements, 0, output, 0, index);
@@ -69,10 +65,6 @@ public final class ImmutableArrayList implements ImmutableList {
 //    Done
     @Override
     public ImmutableList remove(int index) {
-        if (index > this.size || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-
         Object[] output = new Object[this.size];
 
         System.arraycopy(this.elements, 0, output, 0, index);

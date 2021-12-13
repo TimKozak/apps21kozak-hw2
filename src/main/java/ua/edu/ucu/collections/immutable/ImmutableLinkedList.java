@@ -48,10 +48,6 @@ public final class ImmutableLinkedList implements ImmutableList {
 //    Done
     @Override
     public ImmutableList addAll(int index, Object[] c) {
-        if (index > size() || index < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-
         Object[] output = new Object[size() + c.length];
         Object[] elements = toArray();
 
@@ -119,7 +115,7 @@ public final class ImmutableLinkedList implements ImmutableList {
 
         while (node != null) {
             index++;
-            if (node.getValue() != e) {
+            if (node.getValue() == e) {
                 return index;
             }
             node = node.getNext();

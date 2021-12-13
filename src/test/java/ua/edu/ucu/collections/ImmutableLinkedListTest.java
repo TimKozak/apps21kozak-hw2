@@ -4,13 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ImmutableLinkedListTest {
     ImmutableLinkedList list1;
     ImmutableLinkedList list2;
     ImmutableLinkedList list3;
+    Object number1;
+    Object number2;
 
     @Before
     public void setUp() {
@@ -25,12 +26,18 @@ public class ImmutableLinkedListTest {
         list2 = (ImmutableLinkedList) list2.addAll(new Object[]{4,6});
         list2 = (ImmutableLinkedList) list2.addAll(0, new Object[]{0});
         list2 = (ImmutableLinkedList) list2.set(list2.size()-1,5);
+        number1 = list2.getHead();
+        number2 = list2.getTail();
+
     }
 
     @Test
     public void everything() {
-        assertEquals(1, list2.indexOf(1));
+        assertEquals(2, list2.indexOf(1));
         assertEquals(1, list1.size());
         assertTrue(list3.isEmpty());
+        assertEquals(-1, list2.indexOf(25));
+        assertEquals(3, list2.get(3));
+        assertNotSame(number1, number2);
     }
 }
