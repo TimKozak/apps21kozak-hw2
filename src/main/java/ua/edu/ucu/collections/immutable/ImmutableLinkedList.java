@@ -118,11 +118,11 @@ public final class ImmutableLinkedList implements ImmutableList {
         Node node = this.head;
 
         while (node != null) {
+            index++;
             if (node.getValue() != e) {
                 return index;
             }
             node = node.getNext();
-            index++;
         }
 
         return -1;

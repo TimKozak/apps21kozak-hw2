@@ -79,6 +79,10 @@ public final class ImmutableArrayList implements ImmutableList {
         System.arraycopy(this.elements, index + 1, output, index,
                 this.size - (index + 1));
 
+        if (this.size > 0) {
+            this.size--;
+        }
+
         return new ImmutableArrayList(output);
     }
 
